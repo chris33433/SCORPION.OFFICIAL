@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scorpion Official</title>
+    <style>
+        /* Definizione di variabili per i colori */
+        :root {
+            --main-color: #ff0000;
+            --dark-color: #8b0000;
+            --hover-color: #ff5e57;
+            --shadow-color: rgba(255, 0, 0, 0.8);
+            --secondary-color: #444;
+        }
+
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #111;
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        header {
+            background: linear-gradient(45deg, var(--main-color), var(--dark-color));
+            color: white;
+            padding: 25px 0;
+            font-size: 32px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            box-shadow: 0 6px 15px var(--shadow-color);
+            transition: all 0.3s ease;
+        }
+        header:hover {
+            background: linear-gradient(45deg, var(--hover-color), var(--main-color));
+            box-shadow: 0 10px 20px var(--shadow-color);
+        }
+
+        /* Logo Section */
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40vh;
+            transition: transform 0.3s ease;
+        }
+        .logo {
+            width: 200px;
+            height: 200px;
+            background-image: url('logo_scorpion.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            box-shadow: 0 0 30px var(--shadow-color);
+            animation: glow 1.5s infinite alternate;
+            transition: all 0.3s ease;
+        }
+        .logo-container:hover .logo {
+            transform: rotate(360deg);
+        }
+        @keyframes glow {
+            0% { box-shadow: 0 0 20px var(--shadow-color); }
+            100% { box-shadow: 0 0 35px var(--main-color); }
+        }
+
+        /* Social Icons */
+        .social-icons {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+        .social-icons a {
+            display: inline-block;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        .social-icons img {
+            width: 50px;
+            height: 50px;
+            transition: all 0.3s ease;
+        }
+        .social-icons a:hover img {
+            transform: scale(1.1);
+        }
+        .social-icons a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--main-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        .social-icons a:hover::before {
+            width: 100%;
+        }
+
+        /* Music Section */
+        .music-tablet {
+            width: 80%;  /* Aumentato il width per renderlo più grande */
+            max-width: 800px; /* Limitiamo la larghezza massima */
+            height: 450px;  /* Aumentato l'altezza */
+            background: rgba(0, 0, 0, 0.85);
+            margin: 40px auto;
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 0 30px var(--shadow-color);
+            position: relative;
+            overflow: hidden;  /* Aggiunto per evitare che gli elementi escano fuori */
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .music-tablet:hover {
+            box-shadow: 0 0 40px var(--shadow-color);
+        }
+
+        /* Modifica il logo dentro il tablet musicale */
+        .music-logo {
+            width: 120px;
+            height: 120px;
+            background-image: url('logo_scorpion.png'); /* Cambia con il tuo logo */
+            background-size: cover; /* Assicura che il logo copra tutto lo spazio */
+            background-position: center;
+            margin: 0 auto 15px;
+            box-shadow: 0 0 25px var(--shadow-color);
+            border-radius: 50%; /* Logo rotondo */
+        }
+
+        .music-buttons {
+            display: flex;
+            justify-content: space-around;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .music-buttons button {
+            background: linear-gradient(90deg, var(--hover-color), var(--main-color));
+            border: none;
+            color: white;
+            padding: 14px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 15px;
+            box-shadow: 0 0 15px var(--shadow-color);
+            transition: 0.3s ease;
+        }
+        .music-buttons button:hover {
+            background: linear-gradient(90deg, var(--main-color), var(--hover-color));
+            box-shadow: 0 0 30px var(--shadow-color);
+            transform: scale(1.1);
+        }
+        .music-volume {
+            margin-top: 20px;
+            width: 90%;
+        }
+        .music-volume input {
+            width: 100%;
+            background: var(--secondary-color);
+            border: none;
+            cursor: pointer;
+            transition: 0.3s ease;
+            border-radius: 10px;
+        }
+        .music-volume input:hover {
+            background: var(--hover-color);
+        }
+        .music-volume input[type="range"] {
+            -webkit-appearance: none;
+            height: 8px;
+            background: #444;
+            border-radius: 5px;
+        }
+        .music-volume input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--hover-color);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Progress bar for music */
+        .music-progress {
+            width: 90%;
+            height: 5px;
+            background: #555;
+            border-radius: 5px;
+            margin-top: 20px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .music-progress-bar {
+            width: 0%;
+            height: 100%;
+            background: var(--main-color);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background: linear-gradient(45deg, var(--dark-color), var(--main-color));
+            color: white;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .music-tablet {
+                width: 90%;
+                height: auto;
+            }
+            .logo {
+                width: 160px;
+                height: 160px;
+            }
+            .social-icons {
+                margin-top: 30px;
+                gap: 15px;
+            }
+            .social-icons img {
+                width: 45px;
+                height: 45px;
+            }
+            .music-buttons button {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>Scorpion Official</header>
+    
+    <!-- Logo centrale -->
+    <div class="logo-container">
+        <div class="logo"></div>
+    </div>
+
+    <!-- Sezione Social -->
+    <div class="social-icons">
+        <a href="https://discord.com/channels/@me/1121037268480688200" target="_blank" aria-label="Scorpion Discord">
+            <img src="discord.png" alt="Discord">
+        </a>
+        <a href="https://www.instagram.com/scorpion_2121?utm_source=qr&igsh=MTc1ZHFueTIpMWF4Na==" target="_blank" aria-label="Scorpion Instagram">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+        </a>
+        <a href="https://www.tiktok.com/@scorpion_official?_t=ZN-8ubus081lik&_r=1" target="_blank" aria-label="Scorpion TikTok">
+            <img src="social-media.png" alt="TikTok">
+        </a>
+        <a href="https://www.youtube.com" target="_blank" aria-label="Scorpion YouTube">
+            <img src="telegram.png" alt="Telegram">
+        </a>
+    </div>
+
+    <!-- Tablet musicale -->
+    <div class="music-tablet">
+        <!-- Logo tablet musicale -->
+        <div class="music-logo"></div>
+        <audio id="bg-music" loop>
+            <source src="musica.mp3" type="audio/mpeg">
+            Il tuo browser non supporta l'elemento audio.
+        </audio>
+        <div class="music-buttons">
+            <button onclick="playMusic()">▶ Play</button>
+            <button onclick="pauseMusic()">⏸ Pause</button>
+            <button onclick="restartMusic()">🔄 Riavvia</button>
+            <button onclick="likeMusic()">❤️ Mi piace</button>
+        </div>
+        <div class="music-volume">
+            <input type="range" id="volume" min="0" max="1" step="0.1" value="0.5" onchange="changeVolume(this.value)">
+            <span id="volume-label">Volume: 50%</span>
+        </div>
+        <!-- Barra di progresso della musica -->
+        <div class="music-progress" onclick="seekMusic(event)">
+            <div class="music-progress-bar" id="progress-bar"></div>
+        </div>
+        <div id="music-time" style="margin-top: 20px;">Tempo: 00:00</div> <!-- Visualizza la durata -->
+    </div>
+
+    <footer>&copy; 2025 - Scorpion. Tutti i diritti riservati.</footer>
+    
+    <script>
+        const audio = document.getElementById("bg-music");
+        const progressBar = document.getElementById("progress-bar");
+        const musicTimeDisplay = document.getElementById("music-time");
+
+        audio.addEventListener("timeupdate", updateProgress);
+
+        function playMusic() {
+            audio.play();
+        }
+
+        function pauseMusic() {
+            audio.pause();
+        }
+
+        function restartMusic() {
+            audio.currentTime = 0;
+            audio.play();
+        }
+
+        function changeVolume(value) {
+            audio.volume = value;
+            document.getElementById("volume-label").textContent = `Volume: ${Math.round(value * 100)}%`;
+        }
+
+        function likeMusic() {
+            alert("❤️ Hai aggiunto questa traccia ai preferiti!");
+        }
+
+        function updateProgress() {
+            const currentTime = audio.currentTime;
+            const duration = audio.duration;
+            const progressPercentage = (currentTime / duration) * 100;
+            progressBar.style.width = progressPercentage + "%";
+
+            const minutes = Math.floor(currentTime / 60);
+            const seconds = Math.floor(currentTime % 60);
+            musicTimeDisplay.textContent = `Tempo: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+        }
+
+        function seekMusic(event) {
+            const progressBarWidth = event.target.offsetWidth;
+            const clickPosition = event.offsetX;
+            const newTime = (clickPosition / progressBarWidth) * audio.duration;
+            audio.currentTime = newTime;
+        }
+    </script>
+</body>
+</html>
